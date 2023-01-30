@@ -98,6 +98,7 @@ function showModal() {
 function hideModal() {
     const modalContainer = document.getElementById("modal-container");
     modalContainer.style.display = "none";
+    localStorage.setItem("blocked", false);
     sirena.pause();
 }
 
