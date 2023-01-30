@@ -120,5 +120,7 @@ function hideModal() {
 
 function isPinValid(pin) {
     const now = new Date();
-    return pin === ("" + now.getHours() + (now.getMinutes()));
+    const min = now.getMinutes();
+    const hours = now.getHours();
+    return pin === ("" + (hours < 10 ? "0" + hours : hours) + (min < 10 ? "0" + min : min));
 }
