@@ -1,4 +1,7 @@
+const sirena = new Audio('./sirena.mp3');
+
 window.onload = function () {
+
     if (localStorage.getItem("blocked") && localStorage.getItem("blocked") == "true") {
         document.getElementById("msg1").innerText = "Hai pure provato ad aggiornare la pagina?! Complimenti!"
         showModal();
@@ -58,6 +61,7 @@ function checkPin(pinInputs) {
 
 document.addEventListener("mouseleave", () => {
     localStorage.setItem("blocked", true);
+    sirena.play();
     showModal();
 });
 
@@ -94,6 +98,7 @@ function showModal() {
 function hideModal() {
     const modalContainer = document.getElementById("modal-container");
     modalContainer.style.display = "none";
+    sirena.pause();
 }
 
 function isPinValid(pin) {
