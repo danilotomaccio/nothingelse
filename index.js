@@ -76,7 +76,7 @@ window.oncontextmenu = function () {
 document.addEventListener("keydown", function (event) {
     const key = event.key || event.keyCode;
 
-    if ((key == "F12") || (key == 123) || (key == "Dead") || (key == 73)) {
+    if ((key == "F12") || (key == 123) || (key == "Dead") || (key == 73) || (key == 74) || (key == "∆")) {
         console.log(key);
         event.preventDefault();
         return false;
