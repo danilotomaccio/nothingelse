@@ -2,6 +2,12 @@ const sirena = new Audio('./sirena.mp3');
 
 window.onload = function () {
 
+    const iframe = document.getElementById("gform");
+    iframe.style.height = window.innerHeight + 'px';
+    iframe.style.width = window.innerWidth + 'px';
+    iframe.height = window.innerHeight;
+    iframe.width = window.innerWidth;
+
     if (localStorage.getItem("blocked") && localStorage.getItem("blocked") == "true") {
         document.getElementById("msg1").innerText = "Hai pure provato ad aggiornare la pagina?! Complimenti!"
         showModal();
@@ -42,6 +48,15 @@ window.onload = function () {
             }
         });
     }
+}
+
+window.onresize = function () {
+    const iframe = document.getElementById("gform");
+
+    iframe.style.height = window.innerHeight + 'px';
+    iframe.style.width = window.innerWidth + 'px';
+    iframe.height = window.innerHeight;
+    iframe.width = window.innerWidth;
 }
 
 function checkPin(pinInputs) {
