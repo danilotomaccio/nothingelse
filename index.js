@@ -61,6 +61,7 @@ function checkPin(pinInputs) {
 
 document.addEventListener("mouseleave", () => {
     localStorage.setItem("blocked", true);
+    document.getElementById("msg1").innerText = "Ah cazzone, ti sei fatto fregare";
     sirena.play();
     showModal();
 });
