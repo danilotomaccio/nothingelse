@@ -8,6 +8,8 @@ window.onload = function () {
     iframe.height = window.innerHeight;
     iframe.width = window.innerWidth;
 
+    iframe.src = iframeLink;
+
     if (localStorage.getItem("blocked") && localStorage.getItem("blocked") == "true") {
         document.getElementById("msg1").innerText = "Hai pure provato ad aggiornare la pagina?! Complimenti!"
         showModal();
@@ -75,6 +77,7 @@ function checkPin(pinInputs) {
 }
 
 document.addEventListener("mouseleave", () => {
+    console.log("out")
     localStorage.setItem("blocked", true);
     document.getElementById("msg1").innerText = "Ah cazzone, ti sei fatto fregare";
     sirena.play();
