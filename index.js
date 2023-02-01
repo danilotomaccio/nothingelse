@@ -122,8 +122,9 @@ function hideModal() {
 }
 
 function isPinValid(pin) {
-    const now = new Date();
+    /* const now = new Date();
     const min = now.getMinutes();
     const hours = now.getHours();
-    return pin === ("" + (hours < 10 ? "0" + hours : hours) + (min < 10 ? "0" + min : min));
+    return pin === ("" + (hours < 10 ? "0" + hours : hours) + (min < 10 ? "0" + min : min)); */
+    return pin === unlockPin;
 }
