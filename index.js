@@ -1,14 +1,27 @@
 const sirena = new Audio('./sirena.mp3');
+let iframe;
+
+try {
+    iframeLinkDecoded = atob(iframeLink);
+} catch (e) {
+    iframeLinkDecoded = iframeLink;
+}
+
+try {
+    unlockPinDecoded = atob(unlockPin);
+} catch (e) {
+    unlockPinDecoded = unlockPin;
+}
 
 window.onload = function () {
 
-    const iframe = document.getElementById("gform");
+    iframe = document.getElementById("gform");
     iframe.style.height = window.innerHeight + 'px';
     iframe.style.width = window.innerWidth + 'px';
     iframe.height = window.innerHeight;
     iframe.width = window.innerWidth;
 
-    iframe.src = iframeLink;
+    iframe.src = iframeLinkDecoded;
 
     if (localStorage.getItem("blocked") && localStorage.getItem("blocked") == "true") {
         document.getElementById("msg1").innerText = "Hai pure provato ad aggiornare la pagina?! Complimenti!"
@@ -77,7 +90,7 @@ function checkPin(pinInputs) {
 }
 
 document.addEventListener("mouseleave", () => {
-    console.log("out")
+    // console.log("out")
     localStorage.setItem("blocked", true);
     document.getElementById("msg1").innerText = "Ah cazzone, ti sei fatto fregare";
     sirena.play();
@@ -85,7 +98,7 @@ document.addEventListener("mouseleave", () => {
 });
 
 document.addEventListener("mouseenter", () => {
-    console.log("in")
+    // console.log("in")
 });
 
 window.oncontextmenu = function () {
@@ -96,7 +109,7 @@ document.addEventListener("keydown", function (event) {
     const key = event.key || event.keyCode;
 
     if ((key == "F12") || (key == 123) || (key == "Dead") || (key == 73) || (key == 74) || (key == "∆")) {
-        console.log(key);
+        // console.log(key);
         event.preventDefault();
         return false;
     } else if ((event.ctrlKey && event.shiftKey && key == 73) || (event.ctrlKey && event.shiftKey && key == 74)) {
@@ -110,12 +123,14 @@ document.addEventListener("copy", function (event) {
 });
 
 function showModal() {
+    iframe.src = "";
     const modalContainer = document.getElementById("modal-container");
     modalContainer.style.display = "block";
 }
 
 function hideModal() {
     const modalContainer = document.getElementById("modal-container");
+    iframe.src = iframeLinkDecoded;
     modalContainer.style.display = "none";
     sirena.pause();
     localStorage.setItem("blocked", false);
@@ -126,5 +141,5 @@ function isPinValid(pin) {
     const min = now.getMinutes();
     const hours = now.getHours();
     return pin === ("" + (hours < 10 ? "0" + hours : hours) + (min < 10 ? "0" + min : min)); */
-    return pin === unlockPin;
+    return pin === unlockPinDecoded;
 }
